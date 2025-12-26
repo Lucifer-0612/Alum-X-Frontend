@@ -82,6 +82,15 @@ fun OnboardingScreen(onGetStarted: () -> Unit) {
 
     val pagerState = rememberPagerState(pageCount = { pages.size })
 
+    // Auto-scroll logic
+    androidx.compose.runtime.LaunchedEffect(Unit) {
+        while (true) {
+            kotlinx.coroutines.delay(3000)
+            val nextPage = (pagerState.currentPage + 1) % pages.size
+            pagerState.animateScrollToPage(nextPage)
+        }
+    }
+
     Column(
         modifier = Modifier
             .fillMaxSize()

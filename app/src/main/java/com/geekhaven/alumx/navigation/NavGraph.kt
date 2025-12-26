@@ -5,6 +5,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.geekhaven.alumx.presentation.auth.LoginScreen
+import com.geekhaven.alumx.presentation.auth.RegisterScreen
 import com.geekhaven.alumx.presentation.onboarding.OnboardingScreen
 import com.geekhaven.alumx.presentation.onboarding.SplashScreen
 
@@ -29,7 +30,20 @@ fun AppNavGraph(navController: NavHostController) {
             })
         }
         composable(route = Screen.Login.route) {
-            LoginScreen()
+            LoginScreen(
+                onLoginClick = { /* TODO: Navigate to Home */ },
+                onNavigateToRegister = {
+                    navController.navigate(Screen.Register.route)
+                }
+            )
+        }
+        composable(route = Screen.Register.route) {
+            RegisterScreen(
+                onRegisterClick = { /* TODO: Navigate to Home */ },
+                onNavigateToLogin = {
+                    navController.popBackStack()
+                }
+            )
         }
     }
 }
